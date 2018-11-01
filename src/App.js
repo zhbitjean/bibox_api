@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import DataGrid from './components/datagrid';
+import Chart from './components/chart';
+
 
 class App extends Component {
   
@@ -8,7 +11,7 @@ class App extends Component {
     super(props);
     this.state = {
       items: [],
-      isLoaded: false,
+      isLoaded: false
     }
   };
 
@@ -39,9 +42,29 @@ class App extends Component {
     else{
       return (
         <div className="App">
-            Table
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Ratio</th>
+                <th scope="col">Cap</th>
+                <th scope="col">Latest</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>{items['ratio']}</td>
+                <td>{items['mark_price']}</td>
+                <td>{items['latest_price']}</td>
+              </tr>
+            </tbody>
+          </table>
+          <Chart items={items} isLoaded={isLoaded}/>
+          <main className='container'>
+            <DataGrid items={items} isLoaded={isLoaded}/>
+          </main>
         </div>
-        
       );
     }
 
